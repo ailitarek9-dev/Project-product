@@ -23,9 +23,9 @@ saisirLastname(a){
     this.elements.Lastname().type(a);
 }
 saisirAdresse(adresse, texteS){
-    this.elements.AddressInput().type(adressePartielle, { delay: 150 });
+    this.elements.AddressInput().type(adresse, { delay: 150 });
     this.elements.AddressSuggestions({ timeout: 8000 }).should('be.visible');
-    cy.contains(texte).click();
+    cy.contains(texteS).click();
 }
 saisirComplement(c){
     this.elements.Complement().type(c);
