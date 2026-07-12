@@ -22,10 +22,10 @@ saisirFirstname(n){
 saisirLastname(a){
     this.elements.Lastname().type(a);
 }
-saisirAdresse(adressePartielle, texteSuggestion){
+saisirAdresse(adresse, texteS){
     this.elements.AddressInput().type(adressePartielle, { delay: 150 });
     this.elements.AddressSuggestions({ timeout: 8000 }).should('be.visible');
-    cy.contains(texteSuggestion).click();
+    cy.contains(texte).click();
 }
 saisirComplement(c){
     this.elements.Complement().type(c);
@@ -52,7 +52,7 @@ Govalid(){
     this.ClickValidation();
 }
 
-remplirCommande(n, a, adressePartielle, texteSuggestion, complement, tel){
+remplirCommande(n, a, adresse, texte, complement, tel){
     this.saisirFirstname(n);
     this.saisirLastname(a);
     this.saisirAdresse(adressePartielle, texteSuggestion);
