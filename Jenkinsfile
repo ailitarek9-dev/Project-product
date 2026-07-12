@@ -1,8 +1,9 @@
 pipeline {
-    agent any
-
-    tools {
-        nodejs 'NodeJS'
+    agent {
+        docker {
+            image 'cypress/included:14.5.4'
+            args '-u root:root'
+        }
     }
 
     options {
@@ -15,12 +16,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Install System Dependencies') {
-            steps {
-                sh 'apt-get update && apt-get install -y xvfb libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth'
             }
         }
 
