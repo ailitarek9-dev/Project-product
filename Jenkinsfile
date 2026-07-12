@@ -1,9 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'cypress/included:14.5.4'
-            args '-u root:root'
-        }
+    agent any
+
+    tools {
+        nodejs 'NodeJS'
     }
 
     options {
@@ -12,7 +11,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -46,7 +44,6 @@ pipeline {
                 sh 'npx allure generate allure-results --clean -o allure-report'
             }
         }
-
     }
 
     post {
@@ -59,7 +56,6 @@ pipeline {
                 reportFiles          : 'index.html',
                 reportName           : 'Mochawesome Report'
             ])
-
             publishHTML(target: [
                 allowMissing         : true,
                 alwaysLinkToLastBuild: true,
@@ -68,18 +64,11 @@ pipeline {
                 reportFiles          : 'index.html',
                 reportName           : 'Allure Report'
             ])
-
             archiveArtifacts artifacts: 'cypress/screenshots/**', allowEmptyArchive: true
             archiveArtifacts artifacts: 'cypress/videos/**', allowEmptyArchive: true
         }
-        success {
-            echo 'Tests passed'
-        }
-        unstable {
-            echo 'Tests failed but reports were generated — check Mochawesome/Allure report'
-        }
-        failure {
-            echo 'Pipeline failed before completing'
-        }
+        success { echo 'Tests passed' }
+        unstable { echo 'Tests failed but reports were generated' }
+        failure { echo 'Pipeline failed before completing' }
     }
 }
