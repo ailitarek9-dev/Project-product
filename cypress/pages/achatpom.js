@@ -55,7 +55,7 @@ Govalid(){
 remplirCommande(n, a, adresse, texte, complement, tel){
     this.saisirFirstname(n);
     this.saisirLastname(a);
-    this.saisirAdresse(adressePartielle, texteSuggestion);
+    this.saisirAdresse(adresse, texte);
     if(complement) this.saisirComplement(complement);
     this.saisirPhone(tel);
     this.choisirColissimo();
