@@ -4,27 +4,22 @@ import achatpom from "../pages/achatpom"
 
 describe('le site glowria', ()=>{
 
-    /*beforeEach('setup', ()=>{
+    it('Sign up et commande complète sur le site',()=>{
+        const uniqueEmail = `test${Date.now()}@gmail.com`;
         cy.visit("https://glowria.com/");
 
+        cy.wait(3000);
         cy.get('body').then(($body) => {
-            if ($body.text().includes('OK pour moi')) {
-                cy.contains('OK pour moi', { timeout: 15000 })
+            if ($body.find(':contains("OK pour moi")').length > 0) {
+                cy.contains('OK pour moi', { timeout: 20000 })
                   .should('be.visible')
                   .click({ force: true });
             }
         });
-    });*/
-
-    it('Sign up et commande complète sur le site',()=>{
-        const uniqueEmail = `test${Date.now()}@gmail.com`;
-        cy.visit("https://glowria.com/");
-        //cy.intercept('GET', '**/check-email-exists*').as('checkEmail');
 
         loginpom.ClickInsc();
         loginpom.saisirEmail(uniqueEmail);
         loginpom.clickLogin();
-        //cy.wait('@checkEmail');
         cy.url().should('include','/signup?', { timeout: 10000 });
 
         loginpom.goRemp("firstname","lastname",uniqueEmail,"Andunlm2!","15061990");
