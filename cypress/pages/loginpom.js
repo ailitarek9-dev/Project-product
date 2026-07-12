@@ -50,7 +50,7 @@ clickAchat(){
     this.elements.AchatsBtn().click();
 }
 clickChose(){
-     this.elements.choseProductBtn().click();
+     this.elements.choseProduct().click();
 }
 
 goRemp(n,a,c,p,d){
