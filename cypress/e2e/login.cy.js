@@ -5,9 +5,9 @@ import achatpom from "../pages/achatpom"
 describe('le site glowria', ()=>{
 
     it('Sign up et commande complète sur le site',()=>{
-    cy.viewport(1280, 720);
-    const uniqueEmail = `test${Date.now()}@gmail.com`;
-    cy.visit("https://glowria.com/");
+        const uniqueEmail = `test${Date.now()}@gmail.com`;
+        cy.visit("https://glowria.com/");
+
         cy.wait(3000);
         cy.get('body').then(($body) => {
             if ($body.find(':contains("OK pour moi")').length > 0) {
